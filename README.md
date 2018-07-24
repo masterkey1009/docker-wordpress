@@ -42,7 +42,7 @@ $ docker exec -it blog_db_1 sh -c 'mysqldump WORDPRESS_DB_NAME -u root -pWORDPRE
 For example
 ```
 $ docker exec -it blog_db_1 sh -c 'mysqldump wordpress -u root -ppassword 2> /dev/null' > db-data/mysql.dump.sql
-``
+```
 
 ## Stop
 
