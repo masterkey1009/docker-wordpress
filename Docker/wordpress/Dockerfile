@@ -6,7 +6,7 @@ RUN apt-get -y install wget unzip
 WORKDIR /tmp/wp-plugins
 
 ## plugins
-# RUN wget [wordpress plugin url]
+RUN wget https://downloads.wordpress.org/plugin/contact-form-7.4.6.zip
 
 RUN unzip './*.zip' -d /usr/src/wordpress/wp-content/plugins
 
