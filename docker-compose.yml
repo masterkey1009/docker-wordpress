@@ -1,0 +1,48 @@
+version: '3.1'
+services:
+
+  nginx:
+    build: ./Docker/nginx
+    container_name: nginx
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./Docker/nginx/:/etc/nginx/conf.d
+      - ./logs/nginx:/var/log/nginx
+      - ./wordpress:/var/www/html
+    networks:
+      - wp_network
+    links:
+      - wordpress
+    restart: always
+
+  wordpress:
+    build: ./Docker/wordpress
+    container_name: wordpress
+    volumes:
+      - ./wordpress:/var/www/html
+    networks:
+      - wp_network
+    env_file: .env
+    depends_on:
+      - mysql
+    restart: always
+
+  mysql:
+    image: mariadb
+    container_name: mysql
+    volumes:
+      - ./db-data:/var/lib/mysql
+      - ./db-data/mysql.dump.sql:/docker-entrypoint-initdb.d/install_wordpress.sql
+    networks:
+      - wp_network
+    env_file: .env
+    restart: always
+
+networks:
+  wp_network:
+
+volumes:
+  db-data:
+    driver: local
