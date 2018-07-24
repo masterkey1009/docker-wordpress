@@ -3,7 +3,7 @@
 Docker compose installation of a single site Wordpress instance using Nignix as the web server and MariaDB as the database.
 
 - `nginx:1.13.5-alpine`
-- 'wordpress:php7.2-fpm'
+- `wordpress:php7.2-fpm`
 - `mariadb:latest`
 
 
